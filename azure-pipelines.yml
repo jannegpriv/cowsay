@@ -9,11 +9,23 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - task: CmdLine@2
+        inputs:
+          script: |
+            docker build -t git.systementor.se/yacloud/stefan1120 .
+            docker login -u yacloud -p yacloud1 https://git.systementor.se
+            docker push git.systementor.se/yacloud/stefan1120
+        #     docker login -u $env:DOCKER_USERNAME -p $env:DOCKER_PASSWORD https://git.systementor.se
+        #     docker push git.systementor.se/yacloud/stefan1120
+        # env:
+        #   - DOCKER_USERNAME: $(DOCKER_USERNAME)
+        #   - DOCKER_PASSWORD: $(DOCKER_PASSWORD)
