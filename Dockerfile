@@ -10,7 +10,7 @@ RUN go build -o /app/cmd/cowsay
 FROM scratch
 
 COPY --from=builder /app/cmd/cowsay /cowsay
-COPY *.yml ./ 
+COPY *.yml ./  
 
 
 EXPOSE 8080
