@@ -8,7 +8,7 @@
 # Github Actions - kan köra command line commandon
 #                - flora av komponenter som man kan använda
 
-name: Stefans Docker Image Creation
+name: Jannes Docker Image Creation
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: Build & push Docker image
       with:
-        image: stefanholmberg/test1120
+        image: 471117/test1120
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile
